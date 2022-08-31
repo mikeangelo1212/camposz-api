@@ -16,16 +16,16 @@
         cargarImagen();
         });
       //cargarImagen();
-      fetch("https://cataas.com/cat/cute/says/hola estoy atrapado en una imagen?json=true")//aqui le hacemos fetch a nuestra api
+      fetch("http://shibe.online/api/shibes")//aqui le hacemos fetch a nuestra api
         .then(res => res.json())
         .then(data=>console.log(data));    
       
       
       function cargarImagen()
       {
-        fetch("https://cataas.com/cat/cute/says/hola estoy atrapado en una imagen?json=true")//aqui le hacemos fetch a nuestra api por medio del boton
+        fetch("http://shibe.online/api/shibes")//aqui le hacemos fetch a nuestra api por medio del boton
         .then(res => res.json())
-        .then(data=>document.getElementById('imagen').src="https://cataas.com"+data.url);
+        .then(data=>document.getElementById('imagen').src=data);
       }
      
       </script>
