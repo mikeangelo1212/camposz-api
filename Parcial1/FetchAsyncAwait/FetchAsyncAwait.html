@@ -16,7 +16,7 @@
             document.getElementById('boton').addEventListener('click', async function() {//esta funcion se llama despues del click
             let dato = await hacerPeticion();//la variable "espera" el resultado de esta funcion 
             console.log(dato);//manda el dato a la consola
-            document.getElementById('imagen').src=dato.url//se manda como fuente de img
+            document.getElementById('imagen').src=dato//se manda como fuente de img
              });
 
             async function hacerPeticion() {
