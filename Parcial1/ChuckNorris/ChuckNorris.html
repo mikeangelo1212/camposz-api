@@ -5,23 +5,33 @@
     <head>
         <meta chartset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>FetchAsyncAwait
-        </title>
+        <title>Chuck Norris</title>
     </head>
 
     <body>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text"><br>
+
+        <label for="apellido">Apellido</label>
+        <input id="apellido" type="text"><br>
+
         <button id="boton">Fetch</button>
-        <img id="imagen" width=40%>
+
+        <textarea name="broma" id="broma" cols="30" rows="10"></textarea>
 
         <script>
+
             document.getElementById('boton').addEventListener('click', async function() {//esta funcion se llama despues del click
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            console.log(nombre);
+            console.log(apellido);
             let dato = await hacerPeticion();//la variable "espera" el resultado de esta funcion 
             console.log(dato);//manda el dato a la consola
-            document.getElementById('imagen').src=dato//se manda como fuente de img
-             });
-
+            document.getElementById('broma').value=dato.value.joke//se manda como fuente de img
+             }); 
             async function hacerPeticion() {
-                let respuesta = await fetch("http://shibe.online/api/shibes")//hace el fetch
+                let respuesta = await fetch(`http://api.icndb.com/jokes/random?firstName=${nombre.value}&lastName=${apellido.value}`)//hace el fetch
                 let datojson = await respuesta.json();//se mete el valor a esta variable recien declarada
                 return datojson;//se regresa
             }
