@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>ModuloESM</title>
+  </head>
+  
+  <body>
+    <label for="cadena">Cadena</label>
+    <input id="cadena" type="text">
+    <br>
+    <button id="btn">Hacer mayusculas</button>
+    <br>
+    <button id="btn2">Espacios</button>
+    <br>
+    <label for="cadenaResultado">Resultado</label>
+    <input id="cadenaResultado" type="text">
+    <script type="module">
+      //import * as funciones from './moduloesm.js'
+      document.getElementById("btn").addEventListener("click",function(){//btn del metodo mayusculas
+        import('./moduloesm.js')
+        .then(function(modulo){
+          let cad=document.getElementById("cadena").value;
+          console.log("Cadena en mayusculas: "+modulo.pasarMayusculas(cad))
+          document.getElementById("cadenaResultado").value=modulo.pasarMayusculas(cad);
+        })
+        
+        // let cad=document.getElementById("cadena").value;
+        // console.log("Cadena en mayusculas: "+funciones.pasarMayusculas(cad));
+      })
+
+      document.getElementById("btn2").addEventListener("click",function(){//btn del metodo sin espacios
+        import('./moduloesm.js')
+        .then(function(modulo){
+          let cad=document.getElementById("cadena").value;
+          console.log("Cadena sin espacios: "+modulo.quitarEspacios(cad));
+          document.getElementById("cadenaResultado").value=modulo.quitarEspacios(cad);
+        })
+
+        // let cad=document.getElementById("cadena").value;
+        // console.log("Cadena sin espacios: "+funciones.quitarEspacios(cad));
+      })
+    </script>
+  </body>
+</html>

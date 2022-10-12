@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>Tarea de API</title>
+  </head>
+  
+  <body>
+    <br>
+    <button id="boton">Picale para funcionar</button>
+    
+    <script>
+      //aqui agarramos el boton de abrir imagen y le damos un listener para cuando se le pique
+      document.getElementById('boton').addEventListener('click',function(){
+        hacerPeticion();
+        });
+      
+        function hacerPeticion()
+      {
+        fetch("http://localhost:8081")
+          .then(respuesta=>respuesta.text())
+          .then(datos=>console.log(datos))
+      }
+      
+      
+      
+      //cargarImagen();
+      // fetch("http://localhost:8081")
+      //     .then(respuesta=>respuesta.text())
+      //     .then(datos=>console.log(datos))   
+      
+     
+      </script>
+  </body>
+</html>

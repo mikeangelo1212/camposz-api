@@ -1,0 +1,11 @@
+{
+  "name": "@mikeangelo1212/moduloprueba",
+  "version": "1.0.0",
+  "main": "moduloprueba.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gerardo Pineda Zapata & Miguel Campos",
+  "license": "ISC",
+  "description": "Modulo de prueba con caracteristicas de absorcion y transformacion de cadenas"
+}
