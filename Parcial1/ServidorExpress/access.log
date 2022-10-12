@@ -6,3 +6,5 @@
 ::ffff:127.0.0.1 - - [26/Sep/2022:13:20:47 +0000] "POST /texto HTTP/1.1" 200 101 "-" "Thunder Client (https://www.thunderclient.com)"
 ::ffff:127.0.0.1 - - [26/Sep/2022:13:20:47 +0000] "POST /texto HTTP/1.1" 200 101 "-" "Thunder Client (https://www.thunderclient.com)"
 ::ffff:127.0.0.1 - - [27/Sep/2022:13:23:25 +0000] "GET / HTTP/1.1" 500 1461 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"
+::ffff:127.0.0.1 - - [27/Sep/2022:13:25:25 +0000] "GET / HTTP/1.1" 200 165 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"
+::ffff:127.0.0.1 - - [27/Sep/2022:13:25:26 +0000] "GET /favicon.ico HTTP/1.1" 404 189 "http://localhost:8081/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0"
