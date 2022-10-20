@@ -30,7 +30,7 @@ const con = mysql.createConnection({
 //   });
 // })
 
-app.get('/consulta', (req, res) => {
+app.get('/inventario', (req, res) => {
   console.log(req.query.id)
   con.query(`select * from inventario where ID_PRODUCTO=${req.query.id}`, function (error, results,fields) {
   if (error) throw error;
@@ -39,11 +39,45 @@ app.get('/consulta', (req, res) => {
   });
 })
 
-app.post('/agregar', (req, res) => {
+app.post('/inventario', (req, res) => {
+  console.log(req.body)
+  con.query(`insert into inventario (Descripcion,Precio,existencia_inicial,stock,vigente) 
+		  values ('${req.body.descripcion}',
+              ${req.body.precio},
+              ${req.body.existencia},
+              ${req.body.stock},
+              ${req.body.vigente});`
+      ,function (error, results,fields) {
+  if (error) throw error;
+    console.log(req.body);
+    console.log("Objeto insertado con exito")
+    res.send("Objeto insertado con exito");
+  });
+})
+
+app.put('/inventario', (req, res) => {
+  console.log(req.body)
+  con.query(`update inventario set 
+    descripcion="${req.body.descripcion}",
+    precio=${req.body.precio},
+    existencia_inicial=${req.body.existencia},
+    stock=${req.body.stock},
+    vigente=${req.body.vigente} 
+  where id_producto=${req.body.id};`
+  ,function (error, results,fields) {
+  if (error) throw error;
+    console.log(req.body);
+    console.log("Objeto editado con exito")
+    res.json(req.body);
+  });
+})
+
+app.delete('/inventario', (req, res) => {
   console.log(req.query.id)
-  con.query(`select * from inventario where ID_PRODUCTO=${req.query.id}`, function (error, results,fields) {
+  con.query(`delete from inventario where ID_PRODUCTO=${req.query.id}`, function (error, results,fields) {
   if (error) throw error;
     console.log(results);
+    console.log('Objeto eliminado con exito')
     res.send(results);
   });
 })
