@@ -1,12 +1,13 @@
 const express=require('express')
 let mysql = require('mysql');
+const cors=require('cors')
 
 
 const app = express()
 
 app.use(express.text())
 app.use(express.json())
-
+app.use(cors({origin:"http://localhost"}))
 // app.get('pasteleria/:id_producto',async(req,res)=>{
 //   const DataID=req.params.id_producto;
 //   console.log(DataID);
@@ -33,6 +34,15 @@ const con = mysql.createConnection({
 app.get('/inventario', (req, res) => {
   console.log(req.query.id)
   con.query(`select * from inventario where ID_PRODUCTO=${req.query.id}`, function (error, results,fields) {
+  if (error) throw error;
+    console.log(results);
+    res.send(results);
+  });
+})
+
+app.get('/inventariofull', (req, res) => {
+  console.log(req.query.id)
+  con.query(`select * from inventario`, function (error, results,fields) {
   if (error) throw error;
     console.log(results);
     res.send(results);
