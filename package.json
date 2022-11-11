@@ -6,5 +6,9 @@
     "json2xls": "^0.1.2",
     "mssql": "^9.0.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
   }
 }
