@@ -5,7 +5,8 @@
     "fs": "^0.0.1-security",
     "json2xls": "^0.1.2",
     "mssql": "^9.0.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "vite": "^3.2.3"
   },
   "devDependencies": {
     "webpack": "^5.75.0",
