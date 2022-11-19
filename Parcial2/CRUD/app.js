@@ -35,7 +35,7 @@ app.get('/inventario', (req, res) => {
   console.log(req.query.id)
   con.query(`select * from inventario where ID_PRODUCTO=${req.query.id}`, function (error, results,fields) {
   if (error) throw error;
-    console.log(results);
+    console.log(result);
     res.send(results);
   });
 })
