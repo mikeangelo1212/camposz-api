@@ -1,9 +1,31 @@
-const express=require('express');
+const express=require('express')
 let mysql = require('mysql');
-const cors=require('cors');
-
+const path = require('path')
+const cors=require('cors')
+const ruta =require('./router')
+const swaggerUI =require('swagger-ui-express')
+const swaggerJsDoc=require('swagger-jsdoc')
 const app = express()
 
+
+const swaggerOptions = {definition: 
+  {openapi: '3.0.0',info: 
+  {title: 'API Empleados',
+  version: '1.0.0',      
+  },
+  servers:[            
+    {url: "http://localhost:8081"}        
+          ],      
+    },
+    apis: [
+      `${path.join(__dirname,"./router.js")}`
+    ],  
+                      };
+
+const swaggerDocs=swaggerJsDoc(swaggerOptions)
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs))
+
+app.use(ruta.router)
 app.use(express.text())
 app.use(express.json())
 app.use(cors({origin:"http://localhost"}))
@@ -16,17 +38,9 @@ const con = mysql.createConnection({
   database : 'garfield'
 });
 
-app.get('/:id', (req, res) => {
-  console.log("Id de nuestro objeto: "+req.params.id)
-  con.query(`select direccion from imagenes where id=${req.params.id}`, function (error, result,fields) {
-  if (error) throw error;
-  //if (req.params.id>=15415) res.send("no imagen pipipi");
-    console.log("URL de nuestra imagen: "+Object.values(result[0])) //elemento se enviaba como array de jsons, con esto
-                                        //extraemos los valores de nuestro elemento 0 del arreglo 
-                                        //que en este caso es un json con la direccion de nuestra imagen 
-    //console.log(result[0].RowDataPacket);
-    res.send(Object.values(result[0]));
-  });
+app.listen(8081,() => {
+  console.log('Servidor express escuchando en proceso: 8081')
+  console.log("Dirname: "+__dirname)
 })
 
 // app.get('/:id', (req, res) => {
@@ -98,10 +112,3 @@ app.get('/:id', (req, res) => {
 //     res.send(results);
 //   });
 // })
-
-
-
-app.listen(8081,() => {
-  console.log('Servidor express escuchando en proceso: 8081')
-  console.log("Dirname: "+__dirname)
-})
