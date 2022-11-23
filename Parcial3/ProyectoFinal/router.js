@@ -22,6 +22,77 @@ const con = mysql.createConnection({
   database : 'garfield'
 });
 
+/** 
+ * @swagger
+ * /add:
+ *  post:
+ *   description: Agrega la direccion de una imagen a la base de datos
+ *   responses:
+ *    200:
+ *     description: Esto permite agregar imagenes para su display
+ * 
+*/
+
+router.post('/add', (req, res) => {
+  console.log("Direccion a introducir: "+req.query.url)
+  con.query(`insert into imageneshtml(direccion) values("${req.query.url}");`, function (error, result,fields) {
+  if (error) throw error;
+  
+    console.log("Direccion de la imagen para html:\n "+req.query.url) //elemento se enviaba como array de jsons, con esto
+                                        //extraemos los valores de nuestro elemento 0 del arreglo 
+                                        //que en este caso es un json con la direccion de nuestra imagen 
+    //console.log(result[0].RowDataPacket);
+    res.send("Direcccion agregada: "+req.query.url);
+  });
+})
+
+/** 
+ * @swagger
+ * /put:
+ *  put:
+ *   description: Edita el registro de una direccion de una imagen a la base de datos
+ *   responses:
+ *    200:
+ *     description: Esto permite editar la direccion de las imagenes en la base de datos
+ * 
+*/
+
+router.put('/put', (req, res) => {
+  console.log("Direccion a editar: "+req.query.url+"\nId del resgistro: "+req.query.id)
+  con.query(`update imageneshtml set direccion="${req.query.url}" where id=${req.query.id};`, function (error, result,fields) {
+  if (error) throw error;
+  
+    console.log("Direccion de la imagen para html:\n "+req.query.url) //elemento se enviaba como array de jsons, con esto
+                                        //extraemos los valores de nuestro elemento 0 del arreglo 
+                                        //que en este caso es un json con la direccion de nuestra imagen 
+    //console.log(result[0].RowDataPacket);
+    res.send("Direcccion editada: "+req.query.url);
+  });
+})
+
+/** 
+ * @swagger
+ * /del:
+ *  delete:
+ *   description: Elimina el registro de una direccion de una imagen a la base de datos
+ *   responses:
+ *    200:
+ *     description: Esto permite eliminar la direccion de las imagenes en la base de datos
+ * 
+*/
+
+router.put('/del', (req, res) => {
+  console.log("Id del resgistro a eliminar: "+req.query.id)
+  con.query(`delete from imageneshtml where id=${req.query.id};`, function (error, result,fields) {
+  if (error) throw error;
+  
+    console.log("Id de la imagen a eliminar:\n "+req.query.id) //elemento se enviaba como array de jsons, con esto
+                                        //extraemos los valores de nuestro elemento 0 del arreglo 
+                                        //que en este caso es un json con la direccion de nuestra imagen 
+    //console.log(result[0].RowDataPacket);
+    res.send("Direcccion eliminada con exito");
+  });
+})
 
 
 /** 
