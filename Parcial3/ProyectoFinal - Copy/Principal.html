@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>Garfield API</title>
+  </head>
+  <body>
+    <h3>Imagenes al azar por decada</h3>
+    <button id="boton70">1970</button>
+    <button id="boton80">1980</button>
+    <button id="boton90">1990</button><br>
+    <button id="boton00">2000</button>
+    <button id="boton10">2010</button>
+    <button id="boton20">2020</button>
+    <br>
+    <input id="imagenid" type="text"><br>
+    <button id="boton">Pida la imagen del numero de arriba</button>
+    <button id="botonrand">imagen al azar</button><br>
+    <img id="imagen" alt="Donde esta mi imagen Garfield" width="50%" height="50%">
+      
+
+    <script>
+      cargarImagenRand();
+      consolaImagen();
+      
+      //aqui agarramos el boton de abrir imagen y le damos un listener para cuando se le pique
+      document.getElementById('boton').addEventListener('click',function(){
+        cargarImagen();
+        });
+
+      document.getElementById('botonrand').addEventListener('click',function(){
+        cargarImagenRand();
+        });
+
+      document.getElementById('boton70').addEventListener('click',function(){
+        cargarImagen70();
+        });
+
+      document.getElementById('boton80').addEventListener('click',function(){
+        cargarImagen80();
+        });
+
+      document.getElementById('boton90').addEventListener('click',function(){
+        cargarImagen90();
+        });
+
+      document.getElementById('boton00').addEventListener('click',function(){
+        cargarImagen00();
+        });
+
+      document.getElementById('boton10').addEventListener('click',function(){
+        cargarImagen10();
+        });
+      document.getElementById('boton20').addEventListener('click',function(){
+        cargarImagen20();
+        });
+        async function consolaImagen()
+      {
+        console.log("perro estupido");
+        const urlGarf=await fetch("http://localhost:8081/html/rand");//aqui le hacemos fetch a nuestra api
+        const resultGarf=await urlGarf.json();
+        console.log(resultGarf)  
+      }
+      
+      async function cargarImagen()
+      {
+        var id = document.getElementById('imagenid').value
+        fetch("http://localhost:8081/html/id/"+id)//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+      
+      async function cargarImagenRand()
+      {
+        fetch("http://localhost:8081/html/rand")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      async function cargarImagen70()
+      {
+        fetch("http://localhost:8081/html/80s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+      
+      async function cargarImagen80()
+      {
+        fetch("http://localhost:8081/html/80s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      async function cargarImagen90()
+      {
+        fetch("http://localhost:8081/html/90s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      async function cargarImagen00()
+      {
+        fetch("http://localhost:8081/html/00s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      async function cargarImagen10()
+      {
+        fetch("http://localhost:8081/html/10s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      async function cargarImagen20()
+      {
+        fetch("http://localhost:8081/html/20s")//aqui le hacemos fetch a nuestra api por medio del boton
+        .then(res => res.json())
+        .then(data=>document.getElementById('imagen').src=data);
+      }
+
+      
+     
+      </script>
+  </body>
+</html>
